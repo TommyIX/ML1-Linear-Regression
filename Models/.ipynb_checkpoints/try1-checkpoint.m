@@ -1,4 +1,4 @@
-num=xlsread("C:\Users\JHong\OneDrive\当前项目\彭卫文作业一二 9日代码 13日前交\Data\Advertising_train.csv",1,"B2:E181");
+num=xlsread("C:\Users\53412\Desktop\机器学习\数据集-第一次作业&第二次作业\数据集-第一次作业&第二次作业\3\Advertising_train.csv",1,"B2:E181");
 
 num(:,1)=num(:,1)./5;        %均一化处理
 num(:,3)=num(:,3)./2;        %均一化处理
@@ -9,7 +9,6 @@ d=zeros(30001,1);       %记录每次均方误差下降的大小
 t=zeros(30001,1);       %记录每次迭代的方差
 inde=zeros(30001,1);    %记录每次迭代的学习步长
 w1(:,:,1)=w;
-
 while 1
     k=k+1;
     a1=f(num(:,1:4),w1(:,:,k));       %计算方差
@@ -24,7 +23,6 @@ while 1
             min=f(num(:,1:4),w2);
         end
     end
-        
     
     inde(k)=index;
     w1(:,:,k+1)=w1(:,:,k)-(0.0001/index).*a2;   %迭代

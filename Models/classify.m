@@ -1,4 +1,8 @@
-[data,txt,raw]=xlsread("C:\Users\jhong\Documents\GitHub\ML-Assignment1-Linear-Regression\Data\Default_train.csv",1,"B2:E9001");
+%模型参数
+%csv文件的地址：
+path = "C:\Users\jhong\OneDrive\当前项目\彭卫文作业一二 9日代码 13日前交\Data\Advertising_train.csv";
+
+[data,txt,raw]=xlsread(path,1,"B2:E9001");
 x=zeros(9000,5);
 
 tea_stu=zeros(9000,2);
@@ -31,6 +35,7 @@ d=zeros(10001,1);       %记录每次下降的距离
 t=zeros(10001,1);       %记录每次迭代的方差
 inde=zeros(30001,1);    %记录每次迭代的学习步长
 b1(:,:,1)=b;
+
 while 1
     k=k+1;
     a1=f(x(:,:),default(1:9000),b1(:,:,k));       %计算最大似然
@@ -58,7 +63,8 @@ end
  test1=exp(x(:,:)*b1(:,:,k))./(1+exp(x(:,:)*b1(:,:,k)));
  
  %再缩放处理
- test1=(test1)./(1-test1);
+ test1=(test1)./(1-test1); %激活函数
+ blyat = test1
  for i=1:9000
     if(test1(i)>0.7)
         test1(i)=1;
@@ -116,6 +122,5 @@ function te=f_(data,default,b)   %梯度
     sum1=x.*(y-p(x,b));
     sum1=sum(sum1,1);
     te=-sum1';
-    
 end
 
